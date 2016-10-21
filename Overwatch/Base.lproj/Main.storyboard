@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GYL-22-rZr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Selection View Controller-->
         <scene sceneID="5lt-NC-s7G">
             <objects>
-                <viewController id="GYL-22-rZr" customClass="ViewController" customModule="Overwatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GYL-22-rZr" customClass="SelectionViewController" customModule="Overwatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z8f-AC-pGq"/>
                         <viewControllerLayoutGuide type="bottom" id="cR2-hp-cdF"/>
@@ -17,12 +20,76 @@
                     <view key="view" contentMode="scaleToFill" id="83F-ks-0eR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CharacterName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dia-H2-Rdd">
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1ME-bp-wRH">
+                                <segments>
+                                    <segment title="Offense"/>
+                                    <segment title="Defense"/>
+                                    <segment title="Tank"/>
+                                    <segment title="Support"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeInHeroType:" destination="GYL-22-rZr" eventType="valueChanged" id="WkW-NG-zmX"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGQ-gq-cpr" userLabel="Container View">
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MCg-Ae-zcK">
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Vxg-gt-Ou7"/>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Vxg-gt-Ou7" firstAttribute="top" secondItem="MCg-Ae-zcK" secondAttribute="top" id="0mj-DI-tte"/>
+                                            <constraint firstItem="Vxg-gt-Ou7" firstAttribute="leading" secondItem="MCg-Ae-zcK" secondAttribute="leading" id="9Na-Bb-Nxp"/>
+                                            <constraint firstItem="Vxg-gt-Ou7" firstAttribute="width" secondItem="MCg-Ae-zcK" secondAttribute="width" id="ehc-Je-ZX8"/>
+                                            <constraint firstAttribute="bottom" secondItem="Vxg-gt-Ou7" secondAttribute="bottom" id="giD-Kv-iFL"/>
+                                            <constraint firstItem="Vxg-gt-Ou7" firstAttribute="height" secondItem="MCg-Ae-zcK" secondAttribute="height" id="kjk-Gw-pfL"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vxg-gt-Ou7" secondAttribute="trailing" id="nTG-e6-JfG"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="MCg-Ae-zcK" firstAttribute="centerY" secondItem="vGQ-gq-cpr" secondAttribute="centerY" id="P1Y-BS-l9l"/>
+                                    <constraint firstItem="MCg-Ae-zcK" firstAttribute="height" secondItem="vGQ-gq-cpr" secondAttribute="height" id="dS0-8h-8Qj"/>
+                                    <constraint firstItem="MCg-Ae-zcK" firstAttribute="centerX" secondItem="vGQ-gq-cpr" secondAttribute="centerX" id="mPG-yF-s12"/>
+                                    <constraint firstItem="MCg-Ae-zcK" firstAttribute="width" secondItem="vGQ-gq-cpr" secondAttribute="width" id="zR9-gD-l1e"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cR2-hp-cdF" firstAttribute="top" secondItem="1ME-bp-wRH" secondAttribute="bottom" multiplier="1.02" id="3KY-7w-XW5"/>
+                            <constraint firstItem="vGQ-gq-cpr" firstAttribute="height" secondItem="83F-ks-0eR" secondAttribute="width" multiplier="0.9" id="3mW-qQ-ZEw"/>
+                            <constraint firstItem="vGQ-gq-cpr" firstAttribute="width" secondItem="83F-ks-0eR" secondAttribute="width" multiplier="0.9" id="FFm-AM-dIU"/>
+                            <constraint firstItem="vGQ-gq-cpr" firstAttribute="centerX" secondItem="83F-ks-0eR" secondAttribute="centerX" id="JG3-Rw-TZl"/>
+                            <constraint firstItem="dia-H2-Rdd" firstAttribute="centerY" secondItem="83F-ks-0eR" secondAttribute="centerY" multiplier="0.4" id="ROP-5m-GM7"/>
+                            <constraint firstItem="vGQ-gq-cpr" firstAttribute="centerY" secondItem="83F-ks-0eR" secondAttribute="centerY" multiplier="1.3" id="S7I-W2-Ief"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1ME-bp-wRH" secondAttribute="trailing" id="Tpl-OE-uAb"/>
+                            <constraint firstItem="dia-H2-Rdd" firstAttribute="centerX" secondItem="83F-ks-0eR" secondAttribute="centerX" id="U7v-QU-mMN"/>
+                            <constraint firstItem="dia-H2-Rdd" firstAttribute="width" secondItem="83F-ks-0eR" secondAttribute="width" multiplier="0.5" id="UdK-DM-nQy"/>
+                            <constraint firstItem="1ME-bp-wRH" firstAttribute="leading" secondItem="83F-ks-0eR" secondAttribute="leadingMargin" id="VrP-iR-8eU"/>
+                            <constraint firstItem="1ME-bp-wRH" firstAttribute="height" secondItem="83F-ks-0eR" secondAttribute="height" multiplier="0.05" id="daG-R3-n0D"/>
+                            <constraint firstItem="dia-H2-Rdd" firstAttribute="height" secondItem="83F-ks-0eR" secondAttribute="height" multiplier="0.05" id="euH-ut-Kgx"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="vGQ-gq-cpr" id="Ztw-hI-jUd"/>
+                        <outlet property="nameLabel" destination="dia-H2-Rdd" id="Rpx-Az-qze"/>
+                        <outlet property="scrollView" destination="MCg-Ae-zcK" id="EZH-JW-3uR"/>
+                        <outlet property="segmentControl" destination="1ME-bp-wRH" id="N3m-iy-mo3"/>
+                        <outlet property="stackView" destination="Vxg-gt-Ou7" id="Ero-p7-Y1r"/>
+                        <outlet property="stackViewWidthContraint" destination="ehc-Je-ZX8" id="da5-yC-7Q9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXW-Us-hQL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1308" y="118"/>
+            <point key="canvasLocation" x="-1308" y="117.39130434782609"/>
         </scene>
     </scenes>
 </document>
